@@ -40,7 +40,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <a href="#" class="btn btn-outline-primary">hello rails</a>
+      <a href="#" class="btn btn-outline-primary" id="hello">hello rails</a>
     </div>
     <div class="col">
       <div class="dropdown">
@@ -56,3 +56,10 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+    $("#hello").click(function(){
+      alert("good bye rails");
+    });
+  });
+</script>
