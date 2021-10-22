@@ -29,6 +29,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # devise
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'rails-i18n'
+gem 'devise-i18n'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
