@@ -10,4 +10,9 @@ module DeviseHelper
       "danger"
     end
   end
+
+  # admin user signed in?
+  def admin_signed_in?
+    user_signed_in? && current_user.admin
+  end
 end
