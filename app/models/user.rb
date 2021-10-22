@@ -4,4 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :trackable
+  has_one :profile, dependent: :destroy
+
+  def user_name
+    profile.nil? ? email : profile.name
+  end
 end

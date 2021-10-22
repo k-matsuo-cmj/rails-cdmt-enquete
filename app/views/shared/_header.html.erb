@@ -26,7 +26,7 @@
       </ul>
       <% if user_signed_in? %>
         <span class="navbar-text px-3">
-          <%= "ようこそ #{current_user.email} さん" %>
+          <%= "ようこそ #{current_user.user_name} さん" %>
         </span>
         <%= link_to "ログアウト", :destroy_user_session, method: :delete, class: "btn btn-outline-success btn-sm" %>
       <% else %>
