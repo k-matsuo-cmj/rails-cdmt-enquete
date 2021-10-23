@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_171401) do
+ActiveRecord::Schema.define(version: 2021_10_23_004402) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2021_10_22_171401) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.integer "manager_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manager_id"], name: "index_teams_on_manager_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,4 +59,5 @@ ActiveRecord::Schema.define(version: 2021_10_22_171401) do
   end
 
   add_foreign_key "profiles", "users"
+  add_foreign_key "teams", "users", column: "manager_id"
 end
