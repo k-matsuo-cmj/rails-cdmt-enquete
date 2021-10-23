@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_23_010917) do
+ActiveRecord::Schema.define(version: 2021_10_23_055912) do
+
+  create_table "enquetes", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.string "title", null: false
+    t.date "deadline", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_enquetes_on_team_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
@@ -67,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_10_23_010917) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "enquetes", "teams"
   add_foreign_key "profiles", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
