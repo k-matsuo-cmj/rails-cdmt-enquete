@@ -1,2 +1,32 @@
 <h1>Enquetes#new</h1>
 <p>Find me in app/views/enquetes/new.html.erb</p>
+
+<%= form_with(model: @enquete, url: enquetes_path, local: true, data: { confirm: "アンケートを送信します。よろしいですか？" }) do |f| %>
+  <div class="mb-3 row">
+    <%= f.label :team_id, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :team_id, @teams, :id, :name, {prompt: false}, {class: "form-select"} %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :title, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :deadline, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= f.date_field :deadline, class: "form-control" %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :users, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :users, @users, :id, :user_name, {}, {multiple: true, size: 10, class: "form-select"} %>
+    </div>
+  </div>
+  <div class="m-5 row">
+    <%= f.submit "アンケート送信", class:"btn btn-primary" %>
+  </div>
+<% end %>
