@@ -23,7 +23,7 @@
   <div class="mb-3 row">
     <%= f.label :users, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= f.collection_select :users, @users, :id, :user_name, {}, {multiple: true, size: 10, class: "form-select"} %>
+      <%= f.select :users, options_for_select(@users.map{|u|[u.user_name, u.id]}, @users.ids), {}, {multiple: true, size: 10, class: "form-select"} %>
     </div>
   </div>
   <div class="m-5 row">

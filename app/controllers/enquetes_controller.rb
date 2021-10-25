@@ -12,7 +12,7 @@ class EnquetesController < ApplicationController
   def new
     @enquete = Enquete.new
     @teams = managed_teams
-    @users = User.joins(:team_users).where('team_users.team_id IN (?)', managed_teams.ids)
+    @users = managed_team_users
   end
 
   def create
@@ -24,12 +24,19 @@ class EnquetesController < ApplicationController
     else
       flash.now[:error] = "入力に誤りがあります。"
       @teams = managed_teams
+      @users = managed_team_users
       render :new
     end
   end
 
   def edit
     @enquete = Enquete.find(params[:id])
+  end
+
+  def destroy
+    @enquete = Enquete.find(params[:id])
+    @enquete.destroy
+    redirect_to enquetes_url
   end
 
   private
@@ -39,5 +46,9 @@ class EnquetesController < ApplicationController
 
     def managed_teams
       Team.where(manager: current_user)
+    end
+
+    def managed_team_users
+      User.joins(:team_users).where('team_users.team_id IN (?)', managed_teams.ids)
     end
 end

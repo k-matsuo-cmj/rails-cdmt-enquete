@@ -1,2 +1,25 @@
 <h1>Enquetes#show</h1>
 <p>Find me in app/views/enquetes/show.html.erb</p>
+
+<h3></h3><%= @enquete.title%></h3>
+<p><%= "チーム : #{@enquete.team.name}" %></p>
+<p><%= "作成日 : #{@enquete.created_at}"%></p>
+<p><%= "提出期限 : #{@enquete.deadline}"%></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>最終更新日</th>
+      <th>回答状況</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @enquete.replies.each do |reply| %>
+    <tr>
+      <td><%= reply.user.user_name%></td>
+      <td><%= reply.updated_at if reply.update_count > 0 %></td>
+      <td><%= !reply.submitted_at.nil? ? "回答済" : (reply.update_count > 0 ? "回答中" : "未回答") %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
