@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :enquetes
+  resources :replies, only: [:index, :show, :edit, :update]
   resources :teams, only: [:index, :show]
   root to: "home#index"
 end

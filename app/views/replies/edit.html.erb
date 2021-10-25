@@ -1,0 +1,445 @@
+<h1>アンケート回答フォーム</h1>
+<p>Find me in app/views/replies/edit.html.erb</p>
+
+<%= form_with(model: @reply, local: true) do |f| %>
+  <div class="row">
+    <div class="col-3">
+      <label class="form-label">社員番号</label>
+    </div>
+    <div class="col"><p><%= @reply.user.profile.emp_no %></p></div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <label class="form-label">氏名</label>
+    </div>
+    <div class="col"><p><%= @reply.user.user_name %></p></div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :this_grade, "グレード・ステータス", class: "col-form-label" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :this_grade, class: "form-control" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :this_status, class: "form-control" %>
+    </div>
+  </div>
+  <p class="h4 mt-4">■スキルシート</p>
+  <p class="text-muted">*別途スキルシートを最新化すること</p>
+
+  <p class="h4 mt-4">■プロジェクトの近況</p>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-11">
+      <%= f.label :pj_technical_skill do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">今期のプロジェクトに対するテクニカル的な満足度や、自分のスキルに対する自信度はどうであったか。</span>
+      <% end %>
+      <%= f.text_area :pj_technical_skill, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-3">
+    <div class="col-sm-11">
+      <%= f.label :pj_relationships do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">今期のプロジェクトでの人間関係は良好であったか。又、満足のいくものであったか。</span>
+      <% end %>
+      <%= f.text_area :pj_relationships, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-3">
+    <div class="col-sm-11">
+      <%= f.label :pj_appeal_problem do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">その他でアピールや問題と感じているポイントはあったか。</span>
+      <% end %>
+      <%= f.text_area :pj_appeal_problem, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+
+  <p class="h4 mt-4">■将来ビジョン・具体的な目標の設定</p>
+  <p class="h5 mt-3">ITSS キャリアパスの方向性</p>
+  <div class="row mt-3">
+    <div class="col-3">
+      <%= f.label :future_job_category, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">将来希望する職種</span>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :future_job_category, class: "form-control" %>
+    </div>
+  </div>
+  <p class="h5 mt-3">■1年後</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :future_grade_1y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">グレード</span>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :future_grade_1y, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_image_1y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">人材イメージ</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_image_1y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_action_1y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">具体的な行動・目標</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_action_1y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <p class="h5 mt-2">■3年後</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :future_grade_3y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">グレード</span>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :future_grade_3y, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_image_3y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">人材イメージ</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_image_3y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_action_3y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">具体的な行動・目標</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_action_3y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <p class="h5 mt-2">■5年後</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :future_grade_5y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">グレード</span>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :future_grade_5y, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_image_5y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">人材イメージ</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_image_5y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :future_action_5y, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">具体的な行動・目標</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :future_action_5y, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+
+  <p class="h4 mt-4">■現キャリアデザイン目標</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :this_target1, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">キャリアデザイン目標①</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :this_target1, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :this_target1_achv, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">進捗率①</span>
+      <% end %>
+    </div>
+    <div class="col-4 d-flex">
+      <%= f.number_field :this_target1_achv, class: "form-control" %><span class="col-form-label w-100"> ％</span>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :this_target1_remarks, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">課題・問題点①</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :this_target1_remarks, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3">
+      <%= f.label :this_target2, class: "col-form-label" do %>
+        <span class="h6">キャリアデザイン目標②</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :this_target2, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :this_target2_achv, class: "col-form-label" do %>
+        <span class="h6">進捗率②</span>
+      <% end %>
+    </div>
+    <div class="col-4 d-flex">
+      <%= f.number_field :this_target2_achv, class: "form-control" %><span class="col-form-label w-100"> ％</span>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :this_target2_remarks, class: "col-form-label" do %>
+        <span class="h6">課題・問題点②</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :this_target2_remarks, class: "form-control" %>
+    </div>
+  </div>
+
+  <p class="h4 mt-4">■次期キャリアデザイン目標</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :next_target1, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">キャリアデザイン目標①</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :next_target1, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :next_target1_ratio, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">分配率①</span>
+      <% end %>
+    </div>
+    <div class="col-4 d-flex">
+      <%= f.number_field :next_target1_ratio, class: "form-control" %><span class="col-form-label w-100"> ％</span>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3">
+      <%= f.label :next_target2, class: "col-form-label" do %>
+        <span class="h6">キャリアデザイン目標②</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_field :next_target2, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :next_target2_ratio, class: "col-form-label" do %>
+        <span class="h6">分配率②</span>
+      <% end %>
+    </div>
+    <div class="col-4 d-flex">
+      <%= f.number_field :next_target2_ratio, class: "form-control" %><span class="col-form-label w-100"> ％</span>
+    </div>
+  </div>
+
+
+
+  <p class="h4 mt-4">■セミナー受講状況</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :seminor_contents, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">受講日・受講セミナー名</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :seminor_contents, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :course_hour, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">受講時間（合計）</span>
+      <% end %>
+    </div>
+    <div class="col-4 d-flex">
+      <%= f.number_field :course_hour, step: "0.1" , class: "form-control" %><span class="col-form-label w-100"> 時間</sp>
+    </div>
+  </div>
+
+  <p class="h4 mt-4">■自己評価</p>
+  <p class="h5 mt-2">能力</p>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-11">
+      <%= f.label :eval_knowledge do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">業務知識：</span><br>
+        <span class="h6">業務知識と技能・能力の程度が、ITSS人材イメージと照らし合わせて当該職能・技能に見合っているか。<br>
+        与えられた職務について自ら保有する能力を発揮し、職務を拡大し、レベルを高め、求められる職務内容を充足できたか。習得度はどうであったか。</span>
+      <% end %>
+      <%= f.text_area :eval_knowledge, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <p class="h5 mt-3">成果・業務</p>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-11">
+      <%= f.label :eval_customer do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">顧客評価・CSサービス：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_customer, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-1">
+    <div class="col-sm-11">
+      <%= f.label :eval_contribution do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">会社貢献度：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_contribution, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-1">
+    <div class="col-sm-11">
+      <%= f.label :eval_quantity_quality do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">仕事の量・質：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_quantity_quality, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <p class="h5 mt-3">情意考課</p>
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-11">
+      <%= f.label :eval_posivity do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">積極性：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_posivity, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-1">
+    <div class="col-sm-11">
+      <%= f.label :eval_decipline do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">規律性：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_decipline, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+  <div class="row justify-content-sm-center mt-1">
+    <div class="col-sm-11">
+      <%= f.label :eval_responsibility do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h5">責任性：</span><br>
+        <span class="h6">〇〇〇〇〇〇〇〇〇〇〇〇<br>
+        〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+      <% end %>
+      <%= f.text_area :eval_responsibility, class: "form-control", size: "20x6" %>
+    </div>
+  </div>
+
+  <p class="h4 mt-4">■要望</p>
+  <div class="row">
+    <div class="col-3">
+      <%= f.label :req_sales, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">上長（マネージャ）に対する要望</span><br>
+        <span class="text-muted">勉強会・懇親会開催要望や、昇格アピールなど</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :req_sales, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :req_manager, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">営業部に対する要望</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :req_manager, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :req_admin, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">管理部に対する要望</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :req_admin, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3">
+      <%= f.label :req_company, class: "col-form-label" do %>
+        <span class="badge bg-danger">必須</span>
+        <span class="h6">会社に対する要望</span>
+      <% end %>
+    </div>
+    <div class="col-8">
+      <%= f.text_area :req_company, class: "form-control", size: "20x3" %>
+    </div>
+  </div>
+
+  <div class="m-5 row">
+    <%= f.submit "保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
+    <%= f.submit "回答完了", name: "finish", class: "btn btn-primary",
+      data: { confirm: "アンケート回答を送信します。よろしいですか？" } %>
+  </div>
+<% end %>
