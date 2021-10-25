@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_10_23_063033) do
     t.string "next_target2"
     t.integer "next_target2_ratio"
     t.text "seminor_contents"
-    t.integer "course_hour"
+    t.decimal "course_hour", precision: 4, scale: 1
     t.text "eval_knowledge"
     t.text "eval_customer"
     t.text "eval_contribution"

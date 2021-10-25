@@ -35,7 +35,7 @@ class CreateReplies < ActiveRecord::Migration[6.1]
       t.integer :next_target2_ratio
 
       t.text    :seminor_contents
-      t.integer :course_hour
+      t.decimal :course_hour, precision: 4, scale: 1
 
       t.text :eval_knowledge
       t.text :eval_customer
