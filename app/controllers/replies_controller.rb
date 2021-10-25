@@ -1,9 +1,14 @@
 class RepliesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :readable_user, only: [:show]
+  before_action :editable_user, only: [:edit, :update]
+
   def index
     @replies = Reply.where(user: current_user)
   end
 
   def show
+    @reply = Reply.find(params[:id])
   end
 
   def edit
@@ -50,5 +55,23 @@ class RepliesController < ApplicationController
         :eval_posivity, :eval_decipline, :eval_responsibility,
         :req_manager, :req_sales, :req_admin, :req_company
       )
+    end
+
+    # アンケートが自分宛 or マネージャの場合のみ参照可能
+    def readable_user
+      reply = Reply.find_by(id: params[:id])
+      unless reply && (reply.user == current_user || reply.enquete.team.manager == current_user)
+        flash[:alert] = "アクセスできません。"
+        redirect_to root_url
+      end
+    end
+
+    # アンケートが自分宛の場合のみ編集可能
+    def editable_user
+      reply = Reply.find_by(id: params[:id])
+      unless reply && reply.user == current_user
+        flash[:alert] = "アクセスできません。"
+        redirect_to root_url
+      end
     end
 end
