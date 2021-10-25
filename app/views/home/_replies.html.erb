@@ -1,0 +1,26 @@
+<h4>あなた宛てのアンケート</h4>
+
+<% if @replies.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>作成日</th>
+        <th>期限</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @replies.each do |reply| %>
+      <tr>
+        <td><%= link_to reply.enquete.title, edit_reply_path(reply.id) %></td>
+        <td><%= reply.enquete.created_at %></td>
+        <td><%= reply.enquete.deadline %></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  アンケートはありません。
+<% end %>
