@@ -1,2 +1,13 @@
 <h1>Replies#show</h1>
 <p>Find me in app/views/replies/show.html.erb</p>
+<p class="display-5" id="p-top"><%= @reply.enquete.title %></p>
+
+<%= form_with(model: @reply, local: true) do |f| %>
+  <%= render partial: 'replies/form', locals: { f: f, user: @reply.user, readonly: true } %>
+  
+  <div class="m-5 row" id="p-save">
+    <%= link_to "戻る", @reply.enquete, class: "btn btn-secondary" %>
+  </div>
+<% end%>
+
+<%= render partial: 'replies/footer', locals: { readonly: true } %>
