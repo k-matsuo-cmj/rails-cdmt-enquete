@@ -6,8 +6,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">タイトル</th>
-        <th scope="col">チーム</th>
-        <th scope="col">期限</th>
+        <th scope="col">送信者</th>
+        <th scope="col">回答期限</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
       <tr>
         <th scope="row"><%= enq.id %></td>
         <td><%= enq.title %></td>
-        <td><%= enq.team.name %></td>
+        <td><%= enq.sender.user_name %></td>
         <td><%= enq.deadline %></td>
         <td>
           <%= link_to "詳細", enq, class: "btn btn-sm btn-success" %>

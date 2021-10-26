@@ -2,8 +2,8 @@
 <p>Find me in app/views/enquetes/show.html.erb</p>
 
 <h3></h3><%= @enquete.title%></h3>
-<p><%= "チーム : #{@enquete.team.name}" %></p>
-<p><%= "作成日 : #{@enquete.created_at}"%></p>
+<p><%= "送信日 : #{@enquete.created_at}"%></p>
+<p><%= "送信者 : #{@enquete.sender.user_name}" %></p>
 <p><%= "提出期限 : #{@enquete.deadline}"%></p>
 <table class="table">
   <thead>

@@ -53,10 +53,10 @@ class RepliesController < ApplicationController
       )
     end
 
-    # アンケートが自分宛 or マネージャの場合のみ参照可能
+    # アンケートが自分宛 or 送信者の場合のみ参照可能
     def readable_user
       reply = Reply.find_by(id: params[:id])
-      unless reply && (reply.user == current_user || reply.enquete.team.manager == current_user)
+      unless reply && (reply.user == current_user || reply.enquete.sender == current_user)
         flash[:alert] = "アクセスできません。"
         redirect_to root_url
       end

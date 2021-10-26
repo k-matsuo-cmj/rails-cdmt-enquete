@@ -13,6 +13,8 @@ class EnquetesController < ApplicationController
 
   def create
     @enquete = Enquete.new(enquete_params)
+    @enquete.sender = current_user
+    # TODO form class
     params[:enquete][:users].reject(&:blank?).each { |user_id| @enquete.replies.build(user_id: user_id) }
     if @enquete.save
       flash[:notice] = "アンケートを送信しました。"
@@ -38,7 +40,7 @@ class EnquetesController < ApplicationController
 
   private
     def enquete_params
-      params.require(:enquete).permit(:team_id, :title, :deadline, :users)
+      params.require(:enquete).permit(:title, :deadline)
     end
 
     def managed_teams

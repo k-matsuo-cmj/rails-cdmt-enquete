@@ -5,8 +5,9 @@
     <thead>
       <tr>
         <th>タイトル</th>
-        <th>作成日</th>
-        <th>期限</th>
+        <th>送信日</th>
+        <th>送信者</th>
+        <th>回答期限</th>
         <th></th>
       </tr>
     </thead>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= link_to reply.enquete.title, edit_reply_path(reply.id) %></td>
         <td><%= reply.enquete.created_at %></td>
+        <td><%= reply.enquete.sender.user_name %></td>
         <td><%= reply.enquete.deadline %></td>
         <td></td>
       </tr>
