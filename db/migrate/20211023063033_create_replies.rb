@@ -13,13 +13,13 @@ class CreateReplies < ActiveRecord::Migration[6.1]
 
       t.string  :future_job_category
       t.string  :future_grade_1y
-      t.text    :future_image_1y
+      t.string  :future_image_1y
       t.text    :future_action_1y
       t.string  :future_grade_3y
-      t.text    :future_image_3y
+      t.string  :future_image_3y
       t.text    :future_action_3y
       t.string  :future_grade_5y
-      t.text    :future_image_5y
+      t.string  :future_image_5y
       t.text    :future_action_5y
 
       t.string  :this_target1
