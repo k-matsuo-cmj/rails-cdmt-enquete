@@ -3,11 +3,11 @@
 <p class="display-5" id="p-top"><%= @reply.enquete.title %></p>
 
 <%= form_with(model: @reply, local: true) do |f| %>
-  <%= render partial: 'replies/form', locals: { f: f, user: @reply.user, readonly: true } %>
+  <%= render partial: 'replies/form', locals: { f: f, reply: @reply, is_edit: false } %>
   
   <div class="m-5 row" id="p-save">
     <%= link_to "戻る", @reply.enquete, class: "btn btn-secondary" %>
   </div>
 <% end%>
 
-<%= render partial: 'replies/footer', locals: { readonly: true } %>
+<%= render partial: 'replies/footer', locals: { is_edit: false } %>
