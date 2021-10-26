@@ -1,10 +1,6 @@
 class EnquetesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @enquetes = Enquete.where(team: managed_teams)
-  end
-
   def show
     @enquete = Enquete.find(params[:id])
   end
@@ -20,7 +16,7 @@ class EnquetesController < ApplicationController
     params[:enquete][:users].reject(&:blank?).each { |user_id| @enquete.replies.build(user_id: user_id) }
     if @enquete.save
       flash[:notice] = "アンケートを送信しました。"
-      redirect_to enquetes_url
+      redirect_to root_url
     else
       flash.now[:error] = "入力に誤りがあります。"
       @teams = managed_teams
@@ -36,7 +32,8 @@ class EnquetesController < ApplicationController
   def destroy
     @enquete = Enquete.find(params[:id])
     @enquete.destroy
-    redirect_to enquetes_url
+    flash[:notice] = "アンケートを削除しました。"
+    redirect_to root_url
   end
 
   private

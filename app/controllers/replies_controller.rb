@@ -3,10 +3,6 @@ class RepliesController < ApplicationController
   before_action :readable_user, only: [:show]
   before_action :editable_user, only: [:edit, :update]
 
-  def index
-    @replies = Reply.where(user: current_user)
-  end
-
   def show
     @reply = Reply.find(params[:id])
   end
@@ -28,7 +24,7 @@ class RepliesController < ApplicationController
       flash.now[:notice] = "アンケートを保存しました。引き続き入力できます。"
       if params.has_key? :finish
         # 回答完了の場合
-        redirect_to replies_url
+        redirect_to root_url
         return
       end
     else
