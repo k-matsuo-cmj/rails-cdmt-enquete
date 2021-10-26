@@ -1,4 +1,4 @@
-<p class="display-5"><%= @reply.enquete.title %></p>
+<p class="display-5" id="p-top"><%= @reply.enquete.title %></p>
 
 <%= form_with(model: @reply, local: true) do |f| %>
   <p class="h4">■社員情報</p>
@@ -31,7 +31,7 @@
   <p class="h4 mt-4">■スキルシート</p>
   <p class="text-muted">*別途スキルシートを最新化すること</p>
 
-  <p class="h4 mt-4">■プロジェクトの近況</p>
+  <p class="h4 mt-4" id="p-pj">■プロジェクトの近況</p>
   <div class="row justify-content-sm-center">
     <div class="col-sm-11">
       <%= f.label :pj_technical_skill do %>
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <p class="h4 mt-4">■将来ビジョン・具体的な目標の設定</p>
+  <p class="h4 mt-4" id="p-future">■将来ビジョン・具体的な目標の設定</p>
   <p class="h5 mt-3">ITSS キャリアパスの方向性</p>
   <div class="row mt-3">
     <div class="col-3">
@@ -176,7 +176,7 @@
     </div>
   </div>
 
-  <p class="h4 mt-4">■現キャリアデザイン目標</p>
+  <p class="h4 mt-4" id="p-target">■現キャリアデザイン目標</p>
   <div class="row">
     <div class="col-3">
       <%= f.label :this_target1, class: "col-form-label" do %>
@@ -309,7 +309,7 @@
     </div>
   </div>
 
-  <p class="h4 mt-4">■自己評価</p>
+  <p class="h4 mt-4" id="p-eval">■自己評価</p>
   <p class="h5 mt-2">能力</p>
   <div class="row justify-content-sm-center">
     <div class="col-sm-11">
@@ -394,7 +394,7 @@
     </div>
   </div>
 
-  <p class="h4 mt-4">■要望</p>
+  <p class="h4 mt-4" id="p-req">■要望</p>
   <div class="row">
     <div class="col-3">
       <%= f.label :req_sales, class: "col-form-label" do %>
@@ -441,9 +441,11 @@
     </div>
   </div>
 
-  <div class="m-5 row">
-    <%= f.submit "保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
+  <div class="m-5 row" id="p-save">
+    <%= f.submit "途中まで保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
     <%= f.submit "回答完了", name: "finish", class: "btn btn-primary",
       data: { confirm: "アンケート回答を送信します。よろしいですか？" } %>
   </div>
 <% end %>
+
+<%= render 'replies/footer' %>
