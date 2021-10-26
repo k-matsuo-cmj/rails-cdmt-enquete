@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg <%= admin_signed_in? ? ' navbar-dark bg-dark' : ' navbar-light bg-light' %> bg-gradient" >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">CDMT enquete</a>
+    <%= link_to :root, class: "navbar-brand" do %>
+      <i class="bi bi-stars"></i>CDMT enquete
+    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
