@@ -15,10 +15,17 @@
     <% @replies.each do |reply| %>
       <tr>
         <td><%= link_to reply.enquete.title, edit_reply_path(reply.id) %></td>
-        <td><%= reply.enquete.created_at %></td>
+        <td><%= reply.enquete.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= reply.enquete.sender.user_name %></td>
-        <td><%= reply.enquete.deadline %></td>
-        <td></td>
+        <td>
+          <%= reply.enquete.deadline %>
+          <span class="<%= remain_class(reply.enquete.deadline)%>">
+            <%= "（#{show_remain(reply.enquete.deadline)}）"%>
+          </span>
+        </td>
+        <td>
+          <%= link_to "回答", edit_reply_path(reply.id), class: "btn btn-sm btn-warning" %>
+        </td>
       </tr>
     <% end %>
     </tbody>

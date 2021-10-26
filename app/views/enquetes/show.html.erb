@@ -1,16 +1,17 @@
 <h1>Enquetes#show</h1>
 <p>Find me in app/views/enquetes/show.html.erb</p>
 
-<h3></h3><%= @enquete.title%></h3>
-<p><%= "送信日 : #{@enquete.created_at}"%></p>
+<p class="h1 mb-3"><%= @enquete.title%></p>
+<p><%= "送信日 : #{@enquete.created_at.strftime("%Y-%m-%d %H:%M:%S")}"%></p>
 <p><%= "送信者 : #{@enquete.sender.user_name}" %></p>
-<p><%= "提出期限 : #{@enquete.deadline}"%></p>
+<p><%= "提出期限 : #{@enquete.deadline} （#{show_remain(@enquete.deadline)}）"%></p>
 <table class="table">
   <thead>
     <tr>
       <th>氏名</th>
       <th>最終更新日</th>
       <th>回答状況</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td><%= reply.user.user_name%></td>
       <td><%= reply.updated_at if reply.update_count > 0 %></td>
       <td><%= !reply.submitted_at.nil? ? "回答済" : (reply.update_count > 0 ? "回答中" : "未回答") %></td>
+      <td><%= link_to "詳細", reply, class: "btn btn-sm btn-secondary" %></td>
     </tr>
   <% end %>
   </tbody>

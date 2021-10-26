@@ -4,8 +4,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">タイトル</th>
+        <th scope="col">送信日</th>
         <th scope="col">送信者</th>
         <th scope="col">回答期限</th>
         <th scope="col"></th>
@@ -14,10 +14,15 @@
     <tbody>
       <% @enquetes.each do |enq| %>
       <tr>
-        <th scope="row"><%= enq.id %></td>
         <td><%= enq.title %></td>
+        <td><%= enq.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= enq.sender.user_name %></td>
-        <td><%= enq.deadline %></td>
+        <td>
+          <%= enq.deadline %>
+          <span class="<%= remain_class(enq.deadline)%>">
+            <%= "（#{show_remain(enq.deadline)}）"%>
+          </span>
+        </td>
         <td>
           <%= link_to "詳細", enq, class: "btn btn-sm btn-success" %>
           <%= link_to "削除", enq, method: :delete, class: "btn btn-sm btn-danger",
