@@ -4,7 +4,9 @@
   <%= render partial: 'replies/form', locals: { f: f, reply: @reply, is_edit: true } %>
 
   <div class="m-5 row" id="p-save">
-    <%= f.submit "途中まで保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
+    <% if @reply.submitted_at.nil? %>
+      <%= f.submit "途中まで保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
+    <% end %>
     <%= f.submit "回答完了", name: "finish", class: "btn btn-primary",
       data: { confirm: "アンケート回答を送信します。よろしいですか？" } %>
   </div>

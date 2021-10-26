@@ -24,7 +24,11 @@
           </span>
         </td>
         <td>
-          <%= link_to "回答", edit_reply_path(reply.id), class: "btn btn-sm btn-warning" %>
+          <% if reply.submitted_at.nil? %>
+            <%= link_to "回答", edit_reply_path(reply.id), class: "btn btn-sm btn-warning" %>
+          <% else %>
+            <%= link_to "回答済", edit_reply_path(reply.id), class: "btn btn-sm btn-dark" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

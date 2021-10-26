@@ -21,16 +21,18 @@ class RepliesController < ApplicationController
     @reply.submitted_at = Time.current if params.has_key? :finish
 
     if @reply.update(reply_params)
-      flash.now[:notice] = "アンケートを保存しました。引き続き入力できます。"
       if params.has_key? :finish
         # 回答完了の場合
-        redirect_to root_url
-        return
+       flash[:notice] = "アンケートを回答しました。お疲れ様でした。"
+        redirect_to root_url and return
+      else
+        flash[:notice] = "アンケートを保存しました。引き続き入力できます。"
+        redirect_to request.referrer and return
       end
     else
       flash.now[:error] = "入力に誤りがあります。"
+      render :edit
     end
-    render :edit
   end
 
   private
