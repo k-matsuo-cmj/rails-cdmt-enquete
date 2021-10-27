@@ -394,25 +394,25 @@
 <p class="h4 mt-4" id="p-req">■要望</p>
 <div class="row">
   <div class="col-3">
-    <%= f.label :req_sales, class: "col-form-label" do %>
+    <%= f.label :req_manager, class: "col-form-label" do %>
       <span class="badge bg-danger">必須</span>
       <span class="h6">上長（マネージャ）に対する要望</span><br>
       <span class="text-muted">勉強会・懇親会開催要望や、昇格アピールなど</span>
     <% end %>
   </div>
   <div class="col-8">
-    <%= f.text_area :req_sales, class: "form-control", size: "20x3", readonly: !is_edit %>
+    <%= f.text_area :req_manager, class: "form-control", size: "20x3", readonly: !is_edit %>
   </div>
 </div>
 <div class="row mt-1">
   <div class="col-3">
-    <%= f.label :req_manager, class: "col-form-label" do %>
+    <%= f.label :req_sales, class: "col-form-label" do %>
       <span class="badge bg-danger">必須</span>
       <span class="h6">営業部に対する要望</span>
     <% end %>
   </div>
   <div class="col-8">
-    <%= f.text_area :req_manager, class: "form-control", size: "20x3", readonly: !is_edit %>
+    <%= f.text_area :req_sales, class: "form-control", size: "20x3", readonly: !is_edit %>
   </div>
 </div>
 <div class="row mt-1">

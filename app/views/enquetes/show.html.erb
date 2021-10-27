@@ -25,3 +25,5 @@
   <% end %>
   </tbody>
 </table>
+
+<%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success" %>
