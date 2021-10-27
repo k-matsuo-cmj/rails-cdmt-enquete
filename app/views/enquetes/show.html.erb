@@ -26,4 +26,10 @@
   </tbody>
 </table>
 
-<%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success" %>
+<div>
+  <%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success" %>
+
+  <%= link_to "提出期限変更", edit_enquete_path(id: @enquete.id), class: "btn btn-outline-warning" %>
+  <%= link_to "アンケート削除", @enquete, method: :delete, class: "btn btn-outline-danger",
+    data: { confirm: "アンケート「#{@enquete.title}」を削除します。よろしいですか？" } %>
+</div>

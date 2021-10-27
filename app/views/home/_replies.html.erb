@@ -15,7 +15,7 @@
     <% @replies.each do |reply| %>
       <tr>
         <td><%= link_to reply.enquete.title, edit_reply_path(reply.id) %></td>
-        <td><%= reply.enquete.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= reply.enquete.created_at.strftime("%Y-%m-%d %H:%M") %></td>
         <td><%= reply.enquete.sender.user_name %></td>
         <td>
           <%= reply.enquete.deadline %>
