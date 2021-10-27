@@ -1,5 +1,7 @@
 class EnquetesController < ApplicationController
   before_action :authenticate_user!
+  before_action :manager_user
+  before_action :editable_user, only: [:show, :edit, :update, :delete]
 
   def show
     @enquete = Enquete.find(params[:id])
@@ -7,7 +9,7 @@ class EnquetesController < ApplicationController
 
   def new
     @enquete = Enquete.new
-    @teams = managed_teams
+    # @teams = managed_teams
     @users = managed_team_users
   end
 
@@ -21,7 +23,7 @@ class EnquetesController < ApplicationController
       redirect_to root_url
     else
       flash.now[:error] = "入力に誤りがあります。"
-      @teams = managed_teams
+      # @teams = managed_teams
       @users = managed_team_users
       render :new
     end
@@ -29,6 +31,10 @@ class EnquetesController < ApplicationController
 
   def edit
     @enquete = Enquete.find(params[:id])
+  end
+
+  def update
+    #TODO
   end
 
   def destroy
@@ -49,5 +55,22 @@ class EnquetesController < ApplicationController
 
     def managed_team_users
       User.joins(:team_users).where('team_users.team_id IN (?)', managed_teams.ids)
+    end
+
+    # マネージャのみ参照可能
+    def manager_user
+      unless managed_teams.present?
+        flash[:alert] = "アクセスできません。"
+        redirect_to root_url
+      end
+    end
+
+    # アンケート送信者のみ編集可能
+    def editable_user
+      enquete = Enquete.find_by(id: params[:id])
+      unless enquete && enquete.sender == current_user
+        flash[:alert] = "アクセスできません。"
+        redirect_to root_url
+      end
     end
 end
