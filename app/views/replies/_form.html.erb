@@ -187,13 +187,17 @@
 </div>
 <div class="row mt-1">
   <div class="col-3">
-    <%= f.label :this_target1_achv, class: "col-form-label" do %>
+    <%= f.label :this_target1_rate, class: "col-form-label" do %>
       <span class="badge bg-danger">必須</span>
       <span class="h6">進捗状況</span>
     <% end %>
   </div>
-  <div class="col-4 d-flex">
-    <%= f.number_field :this_target1_achv, class: "form-control", readonly: !is_edit %><span class="col-form-label w-100"> ％</span>
+  <div class="col-2 d-flex">
+    <%= f.number_field :this_target1_rate, class: "form-control", readonly: !is_edit %>
+    <%= f.label :this_target1_rate, "％", class: "col-form-label" %>
+  </div>
+  <div class="col-6">
+    <%= f.text_field :this_target1_progress, class: "form-control", readonly: !is_edit %>
   </div>
 </div>
 <div class="row mt-1">
@@ -219,12 +223,16 @@
 </div>
 <div class="row mt-1">
   <div class="col-3">
-    <%= f.label :this_target2_achv, class: "col-form-label" do %>
+    <%= f.label :this_target2_rate, class: "col-form-label" do %>
       <span class="h6">進捗状況</span>
     <% end %>
   </div>
-  <div class="col-4 d-flex">
-    <%= f.number_field :this_target2_achv, class: "form-control", readonly: !is_edit %><span class="col-form-label w-100"> ％</span>
+  <div class="col-2 d-flex">
+    <%= f.number_field :this_target2_rate, class: "form-control", readonly: !is_edit %>
+    <%= f.label :this_target2_rate, "％", class: "col-form-label" %>
+  </div>
+  <div class="col-6">
+    <%= f.text_field :this_target2_progress, class: "form-control", readonly: !is_edit %>
   </div>
 </div>
 <div class="row mt-1">

@@ -23,10 +23,12 @@ class CreateReplies < ActiveRecord::Migration[6.1]
       t.text    :future_action_5y
 
       t.string  :this_target1
-      t.integer :this_target1_achv
+      t.integer :this_target1_rate
+      t.string  :this_target1_progress
       t.text    :this_target1_remarks
       t.string  :this_target2
-      t.integer :this_target2_achv
+      t.integer :this_target2_rate
+      t.string  :this_target2_progress
       t.text    :this_target2_remarks
 
       t.string  :next_target1

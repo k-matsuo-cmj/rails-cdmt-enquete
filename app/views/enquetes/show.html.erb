@@ -18,7 +18,7 @@
   <% @enquete.replies.each do |reply| %>
     <tr>
       <td><%= reply.user.user_name%></td>
-      <td><%= reply.updated_at if reply.update_count > 0 %></td>
+      <td><%= reply.updated_at.strftime("%Y-%m-%d %H:%M:%S") if reply.update_count > 0 %></td>
       <td><%= !reply.submitted_at.nil? ? "回答済" : (reply.update_count > 0 ? "回答中" : "未回答") %></td>
       <td><%= link_to "詳細", reply, class: "btn btn-sm btn-secondary" %></td>
     </tr>
