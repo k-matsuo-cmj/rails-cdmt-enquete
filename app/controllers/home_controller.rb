@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   
   def index
     @enquetes = Enquete.where(sender: current_user)
-    @replies = Reply.where(user: current_user)
+    @replies = Reply.where(user: current_user).order(created_at: :desc)
   end
   
 end
