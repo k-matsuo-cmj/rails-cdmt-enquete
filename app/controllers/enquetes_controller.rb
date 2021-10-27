@@ -1,28 +1,27 @@
 class EnquetesController < ApplicationController
   before_action :authenticate_user!
   before_action :manager_user
-  before_action :editable_user, only: [:show, :edit, :update, :delete]
+  before_action :sender_user, only: [:show, :edit, :update, :delete]
 
   def show
     @enquete = Enquete.find(params[:id])
   end
 
   def new
-    @enquete = Enquete.new
+    @form = EnquetesForm.new
     # @teams = managed_teams
     @users = managed_team_users
   end
 
   def create
-    @enquete = Enquete.new(enquete_params)
-    @enquete.sender = current_user
-    # TODO form class
-    params[:enquete][:users].reject(&:blank?).each { |user_id| @enquete.replies.build(user_id: user_id) }
-    if @enquete.save
+    @form = EnquetesForm.new(enquete_params)
+    @form.sender_id = current_user.id
+    if @form.save
       flash[:notice] = "アンケートを送信しました。"
       redirect_to root_url
     else
       flash.now[:error] = "入力に誤りがあります。"
+      p @form.errors
       # @teams = managed_teams
       @users = managed_team_users
       render :new
@@ -46,7 +45,7 @@ class EnquetesController < ApplicationController
 
   private
     def enquete_params
-      params.require(:enquete).permit(:title, :deadline)
+      params.require(:enquetes_form).permit(:title, :deadline, users: [])
     end
 
     def managed_teams
@@ -57,7 +56,7 @@ class EnquetesController < ApplicationController
       User.joins(:team_users).where('team_users.team_id IN (?)', managed_teams.ids)
     end
 
-    # マネージャのみ参照可能
+    # マネージャのみ使用可能
     def manager_user
       unless managed_teams.present?
         flash[:alert] = "アクセスできません。"
@@ -65,8 +64,8 @@ class EnquetesController < ApplicationController
       end
     end
 
-    # アンケート送信者のみ編集可能
-    def editable_user
+    # 作成後のアンケートは、送信者のみ参照・編集可能
+    def sender_user
       enquete = Enquete.find_by(id: params[:id])
       unless enquete && enquete.sender == current_user
         flash[:alert] = "アクセスできません。"

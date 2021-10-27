@@ -1,0 +1,1 @@
+ActiveModel::Type.register(:string_array, TypeStringArray)
