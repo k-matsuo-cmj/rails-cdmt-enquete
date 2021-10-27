@@ -18,7 +18,7 @@ teams = []
   managers << User.new(
     email: "m#{i}@example.com", password: "password", confirmed_at: Date.current)
   managers[i].build_profile(
-    name: "マネージャー#{i}", grade: "G5", status: "Q3-MAX", emp_no: i + 10)
+    name: "マネージャー#{i}", grade: "G5", status: "Q3～MAX", emp_no: i + 10)
   managers[i].save
   teams << Team.create(
     name: "チーム#{i}", manager: managers[i]
@@ -39,7 +39,7 @@ teams << Team.create(name: "新チーム", manager: managers[0])
     members << User.new(
       email: "u#{i}_#{j}@example.com", password: "password", confirmed_at: Date.current)
     members[j].build_profile(
-      name: "メンバー#{i}-#{j}", grade: "G#{rand(1..4)}", status: "MID-Q3", emp_no: i * 100 + j)
+      name: "メンバー#{i}-#{j}", grade: "G#{rand(1..4)}", status: "MID～Q3", emp_no: i * 100 + j)
     members[j].save
 
     teams[i].team_users.build(user: members[j])
