@@ -19,14 +19,13 @@ class EnquetesController < ApplicationController
   end
 
   def create
-    @form = EnquetesForm.new(enquete_params)
+    @form = EnquetesForm.new(enquete_form_params)
     @form.sender_id = current_user.id
     if @form.save
       flash[:notice] = "アンケートを送信しました。"
       redirect_to root_url
     else
       flash.now[:error] = "入力に誤りがあります。"
-      p @form.errors
       # @teams = managed_teams
       @users = managed_team_users
       render :new
@@ -35,10 +34,19 @@ class EnquetesController < ApplicationController
 
   def edit
     @enquete = Enquete.find(params[:id])
+    @users = managed_team_users
   end
 
   def update
-    #TODO
+    @enquete = Enquete.find(params[:id])
+    if @enquete.update(enquete_update_params)
+      flash[:notice] = "アンケートを更新しました。"
+      redirect_to enquete_url(params[:id])
+    else
+      flash.now[:error] = "入力に誤りがあります。"
+      @users = managed_team_users
+      render :edit
+    end
   end
 
   def destroy
@@ -49,8 +57,12 @@ class EnquetesController < ApplicationController
   end
 
   private
-    def enquete_params
+    def enquete_form_params
       params.require(:enquetes_form).permit(:title, :deadline, users: [])
+    end
+
+    def enquete_update_params
+      params.require(:enquete).permit(:title, :deadline)
     end
 
     def managed_teams
