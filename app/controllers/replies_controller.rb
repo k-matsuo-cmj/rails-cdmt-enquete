@@ -17,8 +17,8 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     # update_count をカウントアップする
     @reply.update_count += 1
-    # 回答完了の場合、submitted_atをセット
-    @reply.submitted_at = Time.current if params.has_key? :finish
+    # 回答完了かどうか
+    @reply.is_finish = params.has_key? :finish
 
     if @reply.update(reply_params)
       if params.has_key? :finish
