@@ -3,6 +3,7 @@ class Reply < ApplicationRecord
   belongs_to :user
 
   attr_accessor :is_finish
+  before_save :ensure_submit
 
   with_options presence: true, if: :finish? do
     validates :pj_technical_skill, :pj_relationships, :pj_appeal_problem
@@ -84,5 +85,9 @@ class Reply < ApplicationRecord
 
     def finish?
       is_finish
+    end
+
+    def ensure_submit
+      self.submitted_at = Time.current if finish?
     end
 end
