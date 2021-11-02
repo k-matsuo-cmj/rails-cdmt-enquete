@@ -13,3 +13,10 @@
 <% end %>
 
 <%= render partial: 'replies/footer', locals: { is_edit: true } %>
+
+<% if @reply.errors.any? %>
+  <script>
+    const path = location.pathname;
+    history.replaceState('', '', path + '/edit');
+  </script>
+<% end %>
