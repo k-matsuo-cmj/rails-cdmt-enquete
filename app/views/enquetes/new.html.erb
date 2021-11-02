@@ -1,5 +1,4 @@
-<h1>Enquetes#new</h1>
-<p>Find me in app/views/enquetes/new.html.erb</p>
+<h1>新規アンケート送信</h1>
 
 <%= form_with(model: @form, url: enquetes_path, local: true, data: { confirm: "アンケートを送信します。よろしいですか？" }) do |f| %>
   <%= render 'shared/error_message', model: f.object %>

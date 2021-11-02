@@ -1,8 +1,13 @@
 ja:
   activerecord:
     models:
+      enquete: アンケート
       reply: 回答
     attributes:
+      enquete:
+        title: タイトル
+        deadline: 回答期限
+        users: 送信先
       reply:
         this_grade: グレード
         this_status: ステータス

@@ -1,6 +1,3 @@
-<h1>Enquetes#show</h1>
-<p>Find me in app/views/enquetes/show.html.erb</p>
-
 <p class="h1 mb-3"><%= @enquete.title%></p>
 <p><%= "送信日 : #{@enquete.created_at.strftime("%Y-%m-%d %H:%M:%S")}"%></p>
 <p><%= "送信者 : #{@enquete.sender.user_name}" %></p>
@@ -26,10 +23,10 @@
   </tbody>
 </table>
 
-<div>
-  <%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success" %>
+<div class="d-flex">
+  <%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success flex-grow-1 me-2" %>
 
-  <%= link_to "提出期限変更", edit_enquete_path(id: @enquete.id), class: "btn btn-outline-warning" %>
+  <%= link_to "回答期限変更", edit_enquete_path(id: @enquete.id), class: "btn btn-outline-warning" %>
   <%= link_to "アンケート削除", @enquete, method: :delete, class: "btn btn-outline-danger",
     data: { confirm: "アンケート「#{@enquete.title}」を削除します。よろしいですか？" } %>
 </div>
