@@ -2,6 +2,8 @@ class RepliesController < ApplicationController
   before_action :authenticate_user!
   before_action :readable_user, only: [:show]
   before_action :editable_user, only: [:edit, :update]
+  
+  include EnquetesHelper
 
   def show
     @reply = Reply.find(params[:id])
@@ -11,6 +13,8 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     @reply.this_grade ||= current_user.profile.grade
     @reply.this_status ||= current_user.profile.status
+
+    flash.now[:error] = "回答期限を過ぎているため回答できません。" if remain(@reply.enquete.deadline) < 0
   end
 
   def update

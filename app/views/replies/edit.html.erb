@@ -5,9 +5,9 @@
 
   <div class="m-5 row" id="p-save">
     <% if @reply.submitted_at.nil? %>
-      <%= f.submit "途中まで保存", name: "save", class: "btn btn-secondary", disabled: !@reply.submitted_at.nil? %>
+      <%= f.submit "途中まで保存", name: "save", class: "btn btn-secondary", disabled: remain(@reply.enquete.deadline) < 0 %>
     <% end %>
-    <%= f.submit "回答完了", name: "finish", class: "btn btn-primary",
+    <%= f.submit "回答完了", name: "finish", class: "btn btn-primary", disabled: remain(@reply.enquete.deadline) < 0,
       data: { confirm: "アンケート回答を送信します。よろしいですか？" } %>
   </div>
 <% end %>
