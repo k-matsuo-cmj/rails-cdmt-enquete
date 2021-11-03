@@ -1,4 +1,5 @@
-<h1>新規アンケート送信</h1>
+<h1>新規アンケート</h1>
+<p class="text-muted">アンケート送信ボタンを押すと、送信先に通知されます。</p>
 
 <%= form_with(model: @form, url: enquetes_path, local: true, data: { confirm: "アンケートを送信します。よろしいですか？" }) do |f| %>
   <%= render 'shared/error_message', model: f.object %>
@@ -11,7 +12,7 @@
   <div class="mb-3 row">
     <%= f.label :deadline, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= f.date_field :deadline, class: "form-control" %>
+      <%= f.date_field :deadline, value: @form.deadline, class: "form-control" %>
     </div>
   </div>
   <div class="mb-3 row">

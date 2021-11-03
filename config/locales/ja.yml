@@ -49,3 +49,9 @@ ja:
         req_sales: 営業部に対する要望
         req_admin: 管理部に対する要望
         req_company: 会社に対する要望
+  activemodel:
+    attributes:
+      enquetes_form:
+        title: タイトル
+        deadline: 回答期限
+        users: 送信先

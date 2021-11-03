@@ -58,7 +58,7 @@ class EnquetesController < ApplicationController
 
   private
     def enquete_form_params
-      params.require(:enquetes_form).permit(:title, :deadline, users: [])
+      params.require(:enquete).permit(:title, :deadline, users: [])
     end
 
     def enquete_update_params
