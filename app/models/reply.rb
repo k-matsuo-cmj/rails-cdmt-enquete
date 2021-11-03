@@ -18,6 +18,7 @@ class Reply < ApplicationRecord
     validates :eval_posivity, :eval_decipline, :eval_responsibility
     validates :req_manager, :req_sales, :req_admin, :req_company
   end
+  validate :next_target_ratio_100, if: :finish?
   with_options length: { maximum: 255 } do
     validates :future_image_1y, :future_image_3y, :future_image_5y,
               :this_target1, :this_target1_progress, :this_target1_remarks,
@@ -89,5 +90,15 @@ class Reply < ApplicationRecord
 
     def ensure_submit
       self.submitted_at = Time.current if finish?
+    end
+
+    def next_target_ratio_100
+      unless self.next_target1_ratio.blank?
+        r1 = self.next_target1_ratio ||= 0
+        r2 = self.next_target2_ratio ||= 0
+        if r1 + r2 != 100
+          errors.add(:next_target1_ratio, "は合計100%になるように入力してください")
+        end
+      end
     end
 end
