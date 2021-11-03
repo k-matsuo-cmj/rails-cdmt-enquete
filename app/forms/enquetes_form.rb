@@ -23,7 +23,7 @@ class EnquetesForm
 
   private
     def deadline_gte_today
-      unless deadline.nil?
+      unless deadline.blank?
         if Date.parse(deadline) < Date.today
           errors.add(:deadline, "は本日以降の日付を入力してください")
         end

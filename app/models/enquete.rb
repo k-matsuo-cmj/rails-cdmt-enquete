@@ -5,4 +5,14 @@ class Enquete < ApplicationRecord
 
   validates :title, presence: true
   validates :deadline, presence: true
+  validate  :deadline_gte_today
+
+  private
+    def deadline_gte_today
+      unless deadline.blank?
+        if deadline < Date.today
+          errors.add(:deadline, "は本日以降の日付を入力してください")
+        end
+      end
+    end
 end
