@@ -14,8 +14,8 @@ class EnquetesController < ApplicationController
 
   def new
     @form = EnquetesForm.new
-    # @teams = managed_teams
     @users = managed_team_users
+    @form.users = @users.ids
   end
 
   def create
@@ -26,7 +26,6 @@ class EnquetesController < ApplicationController
       redirect_to root_url
     else
       flash.now[:error] = "入力に誤りがあります。"
-      # @teams = managed_teams
       @users = managed_team_users
       render :new
     end

@@ -2,7 +2,6 @@
 <p class="text-muted">アンケート送信ボタンを押すと、送信先に通知されます。</p>
 
 <%= form_with(model: @form, url: enquetes_path, local: true, data: { confirm: "アンケートを送信します。よろしいですか？" }) do |f| %>
-  <%= render 'shared/error_message', model: f.object %>
   <div class="mb-3 row">
     <%= f.label :title, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
@@ -18,7 +17,7 @@
   <div class="mb-3 row">
     <%= f.label :users, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= f.select :users, options_for_select(@users.map{|u|[u.user_name, u.id]}, @users.ids), {}, {multiple: true, size: 10, class: "form-select"} %>
+      <%= f.select :users, options_for_select(@users.map{|u|[u.user_name, u.id]}, @form.users), {}, {multiple: true, size: 10, class: "form-select"} %>
     </div>
   </div>
   <div class="m-5 row">

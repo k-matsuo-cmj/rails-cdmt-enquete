@@ -16,7 +16,7 @@
   <div class="mb-3 row">
     <%= f.label :users, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= f.select :users, options_for_select(@enquete.replies.map{|r|[r.user.user_name, r.user.id]}, @enquete.replies.map{|r|r.user.id}), {}, {multiple: true, size: 10, class: "form-select", disabled: true} %>
+      <%= f.select :users, options_for_select(@users.map{|u|[u.user_name, u.id]}, @enquete.replies.map{|r|r.user.id}), {}, {multiple: true, size: 10, class: "form-select", disabled: true} %>
     </div>
   </div>
   <div class="m-5 row">
