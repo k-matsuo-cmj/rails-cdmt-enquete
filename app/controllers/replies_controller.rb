@@ -14,7 +14,17 @@ class RepliesController < ApplicationController
     @reply.this_grade ||= current_user.profile.grade
     @reply.this_status ||= current_user.profile.status
 
-    flash.now[:error] = "回答期限を過ぎているため回答できません。" if remain(@reply.enquete.deadline) < 0
+    if @reply.submitted_at.nil?
+      # 回答期限の残り日数
+      remain_days = remain(@reply.enquete.deadline)
+      if remain_days < 0
+        flash.now[:error] = "回答期限を過ぎているため回答できません。"
+      elsif remain_days < 3
+        flash.now[:alert] = "回答期限は#{show_remain(@reply.enquete.deadline)}です。アンケート記入後、回答完了ボタンを押してください"
+      elsif remain_days < 7
+        flash.now[:notice] = "回答期限は#{show_remain(@reply.enquete.deadline)}です。"
+      end
+    end
   end
 
   def update
