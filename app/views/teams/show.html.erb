@@ -1,0 +1,19 @@
+<h1>Teams#show</h1>
+<p>Find me in app/views/teams/show.html.erb</p>
+
+<h2><%= @team.name %></h2>
+
+<% if @team.users.any? %>
+  <ul>
+  <% @team.users.each do |user| %>
+    <li>
+      <%= user.profile.emp_no %>:
+      <%= user.user_name %>
+      <%= "(#{user.profile.grade} / #{user.profile.status})" %>
+      <%= user.email %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>No Team Member.</p>
+<% end %>

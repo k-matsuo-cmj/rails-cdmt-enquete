@@ -1,0 +1,57 @@
+ja:
+  activerecord:
+    models:
+      enquete: アンケート
+      reply: 回答
+    attributes:
+      enquete:
+        title: タイトル
+        deadline: 回答期限
+        users: 送信先
+      reply:
+        this_grade: グレード
+        this_status: ステータス
+        pj_technical_skill: プロジェクトに対するテクニカル満足度・スキル自信度
+        pj_relationships: プロジェクトでの人間関係
+        pj_appeal_problem: その他アピール・問題点
+        future_job_category: 将来希望する職種
+        future_grade_1y: 1年後のグレード
+        future_image_1y: 1年後の人材イメージ
+        future_action_1y: 1年後の具体的な行動・目標
+        future_grade_3y: 3年後のグレード
+        future_image_3y: 3年後の人材イメージ
+        future_action_3y: 3年後の具体的な行動・目標
+        future_grade_5y: 5年後のグレード
+        future_image_5y: 5年後の人材イメージ
+        future_action_5y: 5年後の具体的な行動・目標
+        this_target1: 現キャリアデザイン目標①
+        this_target1_rate: 進捗率
+        this_target1_progress: 進捗状況
+        this_target1_remarks: 弊害・問題点
+        this_target2: 現キャリアデザイン目標②
+        this_target2_rate: 進捗率
+        this_target2_progress: 進捗状況
+        this_target2_remarks: 弊害・問題点
+        next_target1: 次キャリアデザイン目標①
+        next_target1_ratio: 分配率
+        next_target2: 次キャリアデザイン目標②
+        next_target2_ratio: 分配率
+        seminor_contents: 受講日・受講セミナー名
+        course_hour: 受講時間
+        eval_knowledge: 業務知識
+        eval_customer: 顧客評価・CSｻｰﾋﾞｽ
+        eval_contribution: 会社貢献度
+        eval_quantity_quality: 仕事の量・質
+        eval_posivity: 積極性
+        eval_decipline: 規律性
+        eval_responsibility: 責任性
+        req_manager: 上長（マネージャ）に対する要望
+        req_sales: 営業部に対する要望
+        req_admin: 管理部に対する要望
+        req_company: 会社に対する要望
+  activemodel:
+    attributes:
+      enquetes_form:
+        title: タイトル
+        deadline: 回答期限
+        users: 送信先

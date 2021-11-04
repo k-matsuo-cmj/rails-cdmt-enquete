@@ -10,7 +10,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_125919) do
+ActiveRecord::Schema.define(version: 2021_10_23_063033) do
+
+  create_table "enquetes", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.string "title", null: false
+    t.date "deadline", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sender_id"], name: "index_enquetes_on_sender_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name", default: "", null: false
+    t.integer "emp_no"
+    t.string "grade"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer "enquete_id", null: false
+    t.integer "user_id", null: false
+    t.string "this_grade"
+    t.string "this_status"
+    t.text "pj_technical_skill"
+    t.text "pj_relationships"
+    t.text "pj_appeal_problem"
+    t.string "future_job_category"
+    t.string "future_grade_1y"
+    t.string "future_image_1y"
+    t.text "future_action_1y"
+    t.string "future_grade_3y"
+    t.string "future_image_3y"
+    t.text "future_action_3y"
+    t.string "future_grade_5y"
+    t.string "future_image_5y"
+    t.text "future_action_5y"
+    t.string "this_target1"
+    t.integer "this_target1_rate"
+    t.string "this_target1_progress"
+    t.text "this_target1_remarks"
+    t.string "this_target2"
+    t.integer "this_target2_rate"
+    t.string "this_target2_progress"
+    t.text "this_target2_remarks"
+    t.string "next_target1"
+    t.integer "next_target1_ratio"
+    t.string "next_target2"
+    t.integer "next_target2_ratio"
+    t.text "seminor_contents"
+    t.decimal "course_hour", precision: 4, scale: 1
+    t.text "eval_knowledge"
+    t.text "eval_customer"
+    t.text "eval_contribution"
+    t.text "eval_quantity_quality"
+    t.text "eval_posivity"
+    t.text "eval_decipline"
+    t.text "eval_responsibility"
+    t.text "req_manager"
+    t.text "req_sales"
+    t.text "req_admin"
+    t.text "req_company"
+    t.integer "update_count", default: 0, null: false
+    t.datetime "submitted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["enquete_id"], name: "index_replies_on_enquete_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.integer "manager_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manager_id"], name: "index_teams_on_manager_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +118,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_125919) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -38,4 +127,11 @@ ActiveRecord::Schema.define(version: 2021_10_22_125919) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "enquetes", "users", column: "sender_id"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "replies", "enquetes"
+  add_foreign_key "replies", "users"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "users", column: "manager_id"
 end

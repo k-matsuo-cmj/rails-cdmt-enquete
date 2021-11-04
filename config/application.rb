@@ -19,5 +19,19 @@ module EnqApp
     config.i18n.default_locale = :ja
     config.time_zone = "Asia/Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # validation
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      if instance.kind_of? ActionView::Helpers::Tags::Label
+        # skip when label
+        html_tag.html_safe
+      else
+        html_fragment = Nokogiri::HTML::DocumentFragment.parse(html_tag)
+        html_fragment.children.add_class 'is-invalid'
+        name = instance.instance_variable_get(:@method_name)
+        error = instance.object.errors.full_messages_for(name).first
+        "<div class='has-error'>#{html_fragment.to_s}<span class='invalid-feedback'>#{error}</span></div>".html_safe
+      end
+    end
   end
 end

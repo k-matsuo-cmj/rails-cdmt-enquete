@@ -1,0 +1,38 @@
+<h4><i class="bi bi-send"></i> 送信したアンケート</h4>
+
+<% if @enquetes.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">タイトル</th>
+        <th scope="col">送信日</th>
+        <th scope="col">回答状況</th>
+        <th scope="col">回答期限</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enquetes.each do |enq| %>
+      <tr>
+        <td><%= link_to enq.title, enq %></td>
+        <td><%= enq.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td>
+          <%= "#{enq.replies.where.not(submitted_at: nil).size} / #{enq.replies.size}" %>
+        </td>
+        <td>
+          <%= enq.deadline %>
+          <span class="<%= remain_class(enq.deadline)%>">
+            <%= "（#{show_remain(enq.deadline)}）"%>
+          </span>
+        </td>
+        <td>
+          <%= link_to "詳細", enq, class: "btn btn-sm btn-success" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>アンケートはまだありません。</p>
+<% end%>
+<%= link_to "アンケート作成", :new_enquete, class: "btn btn-primary" %>

@@ -1,0 +1,32 @@
+<p class="h1 mb-3"><%= @enquete.title%></p>
+<p><%= "送信日 : #{@enquete.created_at.strftime("%Y-%m-%d %H:%M:%S")}"%></p>
+<p><%= "送信者 : #{@enquete.sender.user_name}" %></p>
+<p><%= "提出期限 : #{@enquete.deadline} （#{show_remain(@enquete.deadline)}）"%></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>最終更新日</th>
+      <th>回答状況</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @enquete.replies.each do |reply| %>
+    <tr>
+      <td><%= reply.user.user_name%></td>
+      <td><%= reply.updated_at.strftime("%Y-%m-%d %H:%M:%S") if reply.update_count > 0 %></td>
+      <td><%= !reply.submitted_at.nil? ? "回答済" : (reply.update_count > 0 ? "回答中" : "未回答") %></td>
+      <td><%= link_to "詳細", reply, class: "btn btn-sm btn-secondary" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex">
+  <%= link_to "CSV出力", enquete_path(id: @enquete.id, format: :csv), class: "btn btn-success flex-grow-1 me-2" %>
+
+  <%= link_to "回答期限変更", edit_enquete_path(id: @enquete.id), class: "btn btn-outline-warning" %>
+  <%= link_to "アンケート削除", @enquete, method: :delete, class: "btn btn-outline-danger",
+    data: { confirm: "アンケート「#{@enquete.title}」を削除します。よろしいですか？" } %>
+</div>
